@@ -21,7 +21,8 @@ const buttonContainerStyle = {
 
 const buttonStyle = {
     display: 'flex',
-    backgroundColor: "#F0F0F0",
+    background: 'rgba(240, 240, 240, 0.7)',
+    border: '1px solid white', 
     flexDirection: 'row',
     fontWeight: 'bold',
     fontSize: 'larger',
@@ -36,9 +37,10 @@ const buttonStyle = {
 };
 
 const chatLogo = {
-    width: '30px',
-    height: '30px',
-    marginRight: '20px'
+    width: '100px',
+    height: '100px',
+    marginRight: '20px',
+    margin: '-10px'
 };
 
 const underlineStyle = {

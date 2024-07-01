@@ -1,21 +1,18 @@
 import React from 'react';
-import './App.css';
-import ChatPage from './components/ChatPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
-import ButtonAccueil from './components/ButtonAccueil';
+import AboutUsPage from './components/AboutUsPage';
+import ChatPage from './components/ChatPage';
 
 function App() {
-  const [currentPage, setCurrentPage] = React.useState('Home');
-
-  const navigate = (page) => {
-    setCurrentPage(page);
-  };
-
   return (
-    <div>
-      <ButtonAccueil currentPage={currentPage} navigate={navigate} />
-      {currentPage === 'Home' ? <HomePage /> : <ChatPage />}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
+        <Route path="/chat" element={<ChatPage />} />
+      </Routes>
+    </Router>
   );
 }
 

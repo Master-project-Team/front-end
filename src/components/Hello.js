@@ -21,7 +21,8 @@ const Style = {
 };
 
 const logoStyle = {
-  height: '20vmin'
+  height: '40vmin',
+  margin: '-70px -70px -50px -70px'
 };
 
 export default ButtonNouvChat;
