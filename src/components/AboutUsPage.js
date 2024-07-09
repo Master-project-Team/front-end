@@ -17,29 +17,80 @@ function AboutUsPage() {
       </Link>
       <h1 style={h1Style}>About Us</h1>
       <div style={bodyStyle}>
-        <div style={BoxStyle}>
+        <div style={personnaliteStyle}>
           <img src={Mathis} alt="Mathis" style={pictureStyle} />
-          <p>Mathis</p>
+          <div style={BoxStyle}>
+            <h3>Mathis</h3>
+            Âge : 22 ans <br /><br />
+            Formation : Ingénieur du Numérique <br /><br />
+            Ville : Paris <br /><br />
+            Activité extra: Sport (Volley-Ball) <br /><br />
+            <br />
+            « Je veux travailler dans la bonne humeur. » <br />
+            « Je veux être fier de ce qu’on produit. »
+          </div>
         </div>
-        <div style={BoxStyle}>
+        <div style={personnaliteStyle}>
           <img src={Matteo} alt="Matteo" style={pictureStyle} />
-          <p>Matteo</p>
+          <div style={BoxStyle}>
+            <h3>Matteo</h3>
+            Âge : 21 ans <br /><br />
+            Formation : Ingénieur du Numérique <br /><br />
+            Ville : Paris <br /><br />
+            Activité extra: sport (Basket-ball) <br /><br />
+            <br />
+            « Travailler dans une ambiance sociable et motivée.» <br />
+          </div>
         </div>
-        <div style={BoxStyle}>
+        <div style={personnaliteStyle}>
           <img src={Luis} alt="Luis" style={pictureStyle} />
-          <p>Luis</p>
+          <div style={BoxStyle}>
+            <h3>Luis</h3>
+            Âge : 22 ans <br /><br />
+            Formation : Ingénieur du Numérique <br /><br />
+            Ville : Paris <br /><br />
+            Activité extra: Sport (callisthénie) <br /><br />
+            <br />
+            « Je veux créer le meilleur partenaire de voyage conversationnel »<br />
+          </div>
         </div>
-        <div style={BoxStyle}>
+        <div style={personnaliteStyle}>
           <img src={Gabriel} alt="Gabriel" style={pictureStyle} />
-          <p>Gabriel</p>
+          <div style={BoxStyle}>
+            <h3>Gabriel</h3>
+            Âge : 22 ans <br /><br />
+            Formation : Ingénieur du Numérique <br /><br />
+            Ville : Paris <br /><br />
+            Activité extra: Sport (Volley-Ball) <br /><br />
+            <br />
+            « Je veux voir jusqu’où on peut porter ce projet»<br />
+            « J’ai confiance en mon équipe»<br />
+          </div>
         </div>
-        <div style={BoxStyle}>
+        <div style={personnaliteStyle}>
           <img src={Gabin} alt="Gabin" style={pictureStyle} />
-          <p>Gabin</p>
+          <div style={BoxStyle}>
+            <h3>Gabin</h3>
+            Âge : 22 ans <br /><br />
+            Formation : Data Ingénieur <br /><br />
+            Ville : Paris <br /><br />
+            Activité extra: Sport (Rugby) <br /><br />
+            <br />
+            « L'ingénieur doit être au service de la société »<br />
+            « Il faut prendre plaisir dans chaque tâches qu’on entreprend»<br />
+          </div>
         </div>
-        <div style={BoxStyle}>
+        <div style={personnaliteStyle}>
           <img src={Emerick} alt="Emerick" style={pictureStyle} />
-          <p>Emerick</p>
+          <div style={BoxStyle}>
+            <h3>Emerick</h3>
+            Âge : 21 ans <br /><br />
+            Formation : Data & IA <br /><br />
+            Ville : Vitry sur Seine <br /><br />
+            Activité extra: voyages, sport (musculation) <br /><br />
+            <br />
+            « Aimant beaucoup voyager, j’aimerais développer un outil util et efficace qui me permettrait de rendre mes voyages plus agréables»<br />
+          </div>
         </div>
       </div>
     </div>
@@ -58,16 +109,19 @@ const h1Style = {
   fontSize: '50px',
   fontWeight: 'bold',
   color: 'black',
-  margin: '100px 0 0 100px',
+  margin: '70px 0 50px 100px',
 };
 
 const bodyStyle = {
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'center',
   justifyContent: 'center',
-  // margin: 'top right bottom left',
-  padding: '50px 0 0 0',
+};
+
+const personnaliteStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'column',
 };
 
 const ButtonAccueilStyle = {
@@ -87,14 +141,12 @@ const ButtonAccueilStyle = {
 };
 
 const BoxStyle = {
-  display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: 'rgba(255, 255, 255, 0.7)',
   borderRadius: '50px',
   padding: '20px',
   margin: '20px',
-  flexDirection: 'column',
+  width: '150px',
 };
 
 const pictureStyle = {
