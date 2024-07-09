@@ -1,5 +1,9 @@
-.discussion {
-  color: white;
+/* ChatPage.css */
+.hide-scrollbar {
+  scrollbar-width: none; /* Pour Firefox */
+  -ms-overflow-style: none; /* Pour IE et Edge */
 }
 
-
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Pour WebKit */
+}
