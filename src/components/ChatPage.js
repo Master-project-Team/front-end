@@ -4,29 +4,35 @@ import bar_chat from '../assets/bar_chat.png';
 import logo from '../assets/image.png';
 import Conversation from './Conversation.js';
 
-
 function ChatPage() {
   const [conversations, setConversations] = useState([]);
   const [currentConversationId, setCurrentConversationId] = useState(null);
+  const [selectedConversationId, setSelectedConversationId] = useState(null);
 
   useEffect(() => {
     loadConversationLinks();
-}, []);
+  }, []);
 
-const loadConversationLinks = () => {
-  fetch('https://travel-mate-2.azurewebsites.net/conversation_links')
+  const loadConversationLinks = () => {
+    fetch('https://travel-mate-2.azurewebsites.net/conversation_links')
       .then(response => response.json())
       .then(data => setConversations(data));
-};
+  };
 
-const startNewConversation = () => {
-  fetch('https://travel-mate-2.azurewebsites.net/new_conversation', { method: 'POST' })
+  const startNewConversation = () => {
+    fetch('https://travel-mate-2.azurewebsites.net/new_conversation', { method: 'POST' })
       .then(response => response.json())
       .then(data => {
-          setCurrentConversationId(data.conversation_id);
-          loadConversationLinks();
+        setCurrentConversationId(data.conversation_id);
+        setSelectedConversationId(data.conversation_id);
+        loadConversationLinks();
       });
-};
+  };
+
+  const handleConversationClick = (conversationId) => {
+    setCurrentConversationId(conversationId);
+    setSelectedConversationId(conversationId);
+  };
 
   return (
     <div style={AppStyle}>
@@ -46,26 +52,29 @@ const startNewConversation = () => {
             <a 
               key={conversationId} 
               href="#" 
-              style={destinationStyle} 
-              onClick={() => setCurrentConversationId(conversationId)}
-              >
-                Conversation {conversationId}
+              style={conversationId === selectedConversationId ? selectedDestinationStyle : destinationStyle} 
+              onClick={() => handleConversationClick(conversationId)}
+            >
+              Conversation {conversationId}
             </a>
           ))}
         </div>
       </div>
       <div style={mainStyle}>
         <div style={cadrantstyle}>
-          <div style={helloStyle}>
-            <img src={logo} style={logoStyle} alt="logo" />
-            <p>
-              Bonjour comment puis-je vous aider aujourd’hui ?
-            </p>
-          </div>
-          {currentConversationId && <Conversation conversationId={currentConversationId} />}
+          {!currentConversationId ? (
+            <div style={helloStyle}>
+              <img src={logo} style={logoStyle} alt="logo" />
+              <p>
+                Bonjour comment puis-je vous aider aujourd’hui ?
+              </p>
+            </div>
+          ) : (
+            <div style={conversationsStyles}>
+              <Conversation conversationId={currentConversationId} />
+            </div>
+          )}
         </div>
-      
-        
       </div>
     </div>
   );
@@ -76,6 +85,12 @@ const cadrantstyle = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  
+}
+
+const conversationsStyles = {
+  display: 'flex',
+  flexDirection: 'column',
 }
 
 const AppStyle = {
@@ -112,9 +127,12 @@ const historiqueStyle = {
 
 const mainStyle = {
   display: 'flex',
-  flexDirection: 'column',
   width: '80%',
-  alignItems: 'center'
+  height: '100vh',
+  padding: '50px 0 0 0',
+  maxHeight: '90vh',
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
 const discutionStyle = {
@@ -131,7 +149,7 @@ const discutionStyle = {
 };
 
 const destinationStyle = {
-  padding: '10px 15px 10px 15px',
+  padding: '10px 15px',
   margin: '10px 10px 0 10px',
   fontSize: '20px',
   background: 'linear-gradient(to right, #F3FBFF, #D2EEFF)',
@@ -141,6 +159,12 @@ const destinationStyle = {
   color: 'black',
   width: '200px',
   textDecoration: 'none',
+};
+
+const selectedDestinationStyle = {
+  ...destinationStyle,
+  background: 'linear-gradient(to right, #33F0FF, #8333FF)',
+  color: 'white',
 };
 
 const buttonContainerStyle = {

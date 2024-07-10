@@ -46,14 +46,20 @@ const Conversation = ({ conversationId }) => {
             .catch(error => setError(error.toString()));
     };
 
+    const formatText = (text) => {
+        const formattedText = text.replace(/\n/g, '<br/>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        return { __html: formattedText };
+    };
+
+
     return (
         <div>
             {error && <div style={{ color: 'red' }}>{error}</div>}
-            <div id="chat-container" style={{ maxWidth: '1100px', padding: '10px', overflowY: 'auto', height: '300px' }}>
+            <div id="chat-container" style={conversationStyle}>
                 {messages.map((msg, index) => (
                     <div key={index} className={`message ${msg.user_message ? 'user-message' : 'bot-message'}`} >
                         {msg.user_message && <div style={messageStyle}>{msg.user_message}</div>}
-                        {msg.bot_response && <div style={messageIAStyle}>{msg.bot_response}</div>}
+                        {msg.bot_response && <div style={messageIAStyle} dangerouslySetInnerHTML={formatText(msg.bot_response)} />}
                     </div>
                 ))}
             </div>
@@ -72,6 +78,13 @@ const Conversation = ({ conversationId }) => {
     );
 };
 
+const conversationStyle = {
+    maxWidth: '1200px',
+    padding: '20px',
+    overflowY: 'auto',
+    maxHeight: '660px',
+};
+
 const messageStyle = {
     backgroundColor: '#D9D9D9',
     padding: '10px',
@@ -84,7 +97,7 @@ const messageStyle = {
   };
   
 const messageIAStyle = {
-    backgroundColor: '#878BCB',
+    backgroundColor: '#c1ddf3',
     padding: '10px',
     borderRadius: '25px',
     margin: '10px 0',
